@@ -6,16 +6,25 @@ package com.wilsoncys.gamer_pro.backend;
 
 import com.wilsoncys.gamer_pro.backend.database.usersdb.UsersDb;
 import com.wilsoncys.gamer_pro.backend.models.Usuario;
-import com.wilsoncys.gamer_pro.fronted.MenuAdmin;
+import com.wilsoncys.gamer_pro.fronted.panelAdmin;
+import com.wilsoncys.gamer_pro.fronted.panelCajero;
+import com.wilsoncys.gamer_pro.fronted.panel_Bodeguero;
+import com.wilsoncys.gamer_pro.fronted.panel_Inventario;
 import com.wilsoncys.gamer_pro.fronted.principalWindow;
+import java.sql.Connection;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Jonwil
  */
 public class Control {
-    public principalWindow vPrincipal;
+    public principalWindow principalWin;
     private UsersDb usersDb;
+    private Usuario searchUser = null;
+    private String rolUser = "";
+    private int idSucursalAcutal = 0;
 
     
     public Control() {
@@ -25,9 +34,9 @@ public class Control {
  
     
     public void iniciar(){
-        vPrincipal = new principalWindow(this);
-        vPrincipal.setExtendedState(vPrincipal.MAXIMIZED_BOTH);
-        vPrincipal.setVisible(true);
+        principalWin = new principalWindow(this);
+        principalWin.setExtendedState(principalWin.MAXIMIZED_BOTH);
+        principalWin.setVisible(true);
         
     }
 
@@ -35,35 +44,86 @@ public class Control {
         boolean succes = false;
         String name = user;
         String password = pass;
-        System.out.println(name);
-        System.out.println(password);
         UsersDb usersDb = new UsersDb();
-        Usuario search = usersDb.getUserByUsernamePassword(name, password);
-        if (search != null) {
-            //entrar el menu correspondiente
-            String rol = search.getRol();
-            switch (rol) {
-                case "ADMIN":
-                    succes = true;
-                    new MenuAdmin(new Control(), search).setVisible(true);
-                    
-                    break;
-                    case "BODEGA":
-                    
-                    break;
-                    case "INVENTARIO":
-                    break;
-                default:
-                        System.out.println("default switch");
-                    break;
-            }
-        } else {
-                System.out.println("no se encontro");
-        }
+        searchUser = usersDb.getUserByUsernamePassword(name, password);
+        if (searchUser != null) {
+              rolUser = searchUser.getRol();
+              idSucursalAcutal = searchUser.getSucursalId();
+              succes = true;
+        }else{
+            
+        }      
         return succes; 
     }
     
     
+    
+    public void inciarUser(){
+        switch (rolUser) {
+            case "ADMIN":
+                iniciarAdmin();
+                break;
+            case "Bodeguero":
+                iniciarBodeguero();
+                break;
+            case "Cajero":
+                iniciarCajero();
+                break;
+            case "Inventarista":
+                iniciarInventarista();
+                break;
+            default:
+                System.out.println("default al inciar sesion");
+                break;
+                
+        }
+        
+    }
+       
+        
+    public void iniciarAdmin(){
+        panelAdmin panel = new panelAdmin(this);
+        panel.setBounds(10, 0, 1074, 852);
+        principalWin.addThePanelGeneral(panel);
+        
+    }
+    
+    public void iniciarCajero(){
+        panelCajero panel = new panelCajero(this);
+        panel.setBounds(10, 0, 1074, 1000);
+        principalWin.addThePanelGeneral(panel);
+        
+    }
+
+    
+    private void iniciarInventarista() {
+        panel_Inventario panel = new panel_Inventario(this);
+        panel.setBounds(10, 5, 950,  600);
+        principalWin.addThePanelGeneral(panel);
+    }
+
+    private void iniciarBodeguero() {
+        panel_Bodeguero panel = new panel_Bodeguero(this);
+        panel.setBounds(10, 5, 950,  600);
+        principalWin.addThePanelGeneral(panel);
+    }
+    
+    
+    public void crearEmpleado(Usuario usuario) throws SQLException {
+        UsersDb crear = new UsersDb();
+        crear.insert(usuario);
+    }
+    
+//    public void updateInventario(Usuario usuario) throws SQLException {
+//        UsersDb crear = new UsersDb();
+//        crear.insert(usuario);
+//    }
+    
+    
+    
+    public int getIdSucursalActual() {
+        return idSucursalAcutal;
+    }
     
     
     

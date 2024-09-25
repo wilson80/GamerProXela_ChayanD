@@ -11,18 +11,66 @@
         <exec.mainClass>com.wilsoncys.compi1.sql_em.pr1_archivos_jwilson.Pr1_Archivos_JWilson</exec.mainClass>
     </properties>
     
-    
-    
-    
-    
         <dependencies>
+            <dependency>
+            <groupId>com.formdev</groupId>
+            <artifactId>flatlaf</artifactId>
+            <version>3.4.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.formdev</groupId>
+            <artifactId>flatlaf-intellij-themes</artifactId>
+            <version>3.4.1</version>
+        </dependency>
+    
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>42.7.4</version>
         </dependency>
-        
+       
     </dependencies>
+    
+       <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    
+                    <archive>
+                        <manifest>
+                            <mainClass>com.wilsoncys.gamer_pro.main.Main</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+        
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.wilsoncys.gamer_pro.main.Main</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+        
+            </plugin>
+        </plugins>
+     </build>
+        
     
     
     

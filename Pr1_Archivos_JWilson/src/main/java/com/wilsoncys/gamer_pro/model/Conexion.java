@@ -16,8 +16,8 @@ import java.sql.SQLException;
 public class Conexion {
 
     
-//    private String URL = "jdbc:postgresql://localhost:5432/TIENDA"; // Cambia el puerto si es necesario
-    private String URL = "jdbc:postgresql://localhost:5432/GamerPrueba";
+//    private String URL = "jdbc:postgresql://localhost:5432/GamerPrueba";
+    private String URL = "jdbc:postgresql://localhost:5432/GamerProJWilson";
 
     private String USER = "postgres";
     private String PASSWORD = "00android";

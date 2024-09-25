@@ -7,6 +7,7 @@ package com.wilsoncys.gamer_pro.backend.database.usersdb;
 import com.wilsoncys.gamer_pro.backend.models.Usuario;
 import com.wilsoncys.gamer_pro.model.Conexion;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,13 +20,16 @@ import java.util.logging.Logger;
  */
 public class UsersDb {
 
-    private String INSERT = """
-                            INSERT INTO admin.usuarios(nombre, username,password,rol)
-                            VALUES (?, ?,?,?);
+    private String INSERT_NEW_EMP = """
+            INSERT INTO distribuidora.usuarios (cui, nombre, direccion, telefono, nit, rol, sucursal_id, username, password) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
                             """;
 
-    private String SELECT_BY_USERNAME = """
-                                        SELECT * FROM admin.usuarios WHERE username = ? AND password = ?;
+    private String SELECT_BY_USERNAME_EMP = """
+      SELECT * FROM distribuidora.usuarios WHERE username = ? AND password = ?;
+                                        """;
+    private String SELECT_BY_USERNAME_ADMIN = """
+                                        SELECT * FROM administradores.admins WHERE username = ? AND password = ?;
                                         """;
     private Connection conn;
     private PreparedStatement statement;
@@ -33,12 +37,18 @@ public class UsersDb {
 
     public boolean insert(Usuario user) throws SQLException {
         conn = Conexion.getConnection();
-        statement = conn.prepareStatement(INSERT);
-
-        statement.setString(1, user.getNombre());
-        statement.setString(2, user.getUsername());
-        statement.setString(3, user.getPassword());
-        statement.setString(4, user.getRol());
+        statement = conn.prepareStatement(INSERT_NEW_EMP);
+// (cui, nombre, direccion, telefono, fecha_ingreso, nit, rol, sucursal_id, username, password) 
+        statement.setString(1, user.getCui());
+        statement.setString(2, user.getNombre());
+        statement.setString(3, user.getDireccion());
+        statement.setString(4, user.getTelefono());
+//        statement.setDate(5, Date.valueOf(user.getFechaIngreso()));
+        statement.setString(5, user.getNit());
+        statement.setString(6, user.getRol());
+        statement.setInt(7, user.getSucursalId());
+        statement.setString(8, user.getUsername());
+        statement.setString(9, user.getPassword());
 
         statement.executeUpdate();
         statement.close();
@@ -46,26 +56,62 @@ public class UsersDb {
     }
 
     public Usuario getUserByUsernamePassword(String username, String password) {
-        System.out.println("hola "+username);
-        System.out.println("pas "+password);
         Usuario user = null;
         try {
             conn = Conexion.getConnection();
-            statement = conn.prepareStatement(SELECT_BY_USERNAME);
+            statement = conn.prepareStatement(SELECT_BY_USERNAME_EMP);
             statement.setString(1, username);
             statement.setString(2, password);
             result = statement.executeQuery();
+//  , String cui, String nombre, String direccion, String telefono, String nit, int sucursalId, String username, String password, String rol) {
             while (result.next()) {
                 user = new Usuario(
+                        result.getString("cui"), 
                         result.getString("nombre"), 
+                        result.getString("direccion"), 
+                        result.getString("telefono"), 
+                        result.getString("nit"), 
+                        result.getInt("sucursal_id"), 
                         result.getString("username"), 
                         result.getString("password"), 
                         result.getString("rol"));
             }
-            return user;
+            if(user == null){
+                try {
+                    conn = Conexion.getConnection();
+                    statement = conn.prepareStatement(SELECT_BY_USERNAME_ADMIN);
+                    statement.setString(1, username);
+                    statement.setString(2, password);
+                    result = statement.executeQuery();
+                    while (result.next()) {
+                       user = new Usuario(
+                            result.getString("cui"), 
+                            result.getString("nombre"), 
+                            result.getString("direccion"), 
+                            result.getString("telefono"), 
+                            result.getString("nit"), 
+                            result.getInt("sucursal_id"), 
+                            result.getString("username"), 
+                            result.getString("password"), 
+                            result.getString("rol"));
+                    }
+                    return user;
+                } catch (SQLException e) {
+                         System.out.println("Try dentro");
+                    e.printStackTrace();
+                    return null;
+                }
+            }else{
+                return user;
+            }
         } catch (SQLException ex) {
-            System.out.println(ex);
+               ex.printStackTrace();
             return null;
         }
+        
     }
+    
+    
+     
+    
 }

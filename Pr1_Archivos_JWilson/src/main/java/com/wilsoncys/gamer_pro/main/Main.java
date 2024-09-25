@@ -4,6 +4,7 @@
  */
 package com.wilsoncys.gamer_pro.main;
 
+import com.formdev.flatlaf.intellijthemes.FlatCobalt2IJTheme;
 import com.wilsoncys.gamer_pro.backend.Control;
 
 /**
@@ -12,6 +13,18 @@ import com.wilsoncys.gamer_pro.backend.Control;
  */
 public class Main {
     public static void main(String[] args) {
+        try {
+//            FlatGradiantoMidnightBlueIJTheme.setup();
+//            FlatLightOwlIJTheme.setup();
+//            FlatHighContrastIJTheme.setup();
+//              FlatGradiantoDeepOceanIJTheme.setup();
+//              FlatDarkPurpleIJTheme.setup();
+                                                          FlatCobalt2IJTheme.setup();
+//            UIManager.setLookAndFeel(new FlatGradiantoMidnightBlueIJTheme());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
         new Control();
     
     }

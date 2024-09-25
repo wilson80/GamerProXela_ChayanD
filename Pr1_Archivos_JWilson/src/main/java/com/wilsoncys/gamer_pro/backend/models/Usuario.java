@@ -9,92 +9,128 @@ package com.wilsoncys.gamer_pro.backend.models;
  * @author Jonwil
  */
 public class Usuario {
-    private int id;
+    private String cui;
     private String nombre;
+    private String direccion;
+    private String telefono;
+//    private String fechaIngreso;
+    private String nit;
+    private int sucursalId;
     private String username;
     private String password;
     private String rol;
 
     public Usuario() {
     }
-    
-    
 
-    public Usuario(String nombre, String username, String password, String rol) {
+    public Usuario(String cui, String nombre, String direccion, String telefono, String nit, int sucursalId, String username, String password, String rol) {
+        this.cui = cui;
         this.nombre = nombre;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.nit = nit;
+        this.sucursalId = sucursalId;
         this.username = username;
         this.password = password;
         this.rol = rol;
     }
+    
 
-    /**
-     * @return the nombre
-     */
+   
     public String getNombre() {
         return nombre;
     }
 
-    /**
-     * @param nombre the nombre to set
-     */
+  
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
-    /**
-     * @return the username
-     */
+ 
     public String getUsername() {
         return username;
     }
 
-    /**
-     * @param username the username to set
-     */
+   
     public void setUsername(String username) {
         this.username = username;
     }
 
-    /**
-     * @return the password
-     */
+  
     public String getPassword() {
         return password;
     }
 
-    /**
-     * @param password the password to set
-     */
+    
     public void setPassword(String password) {
         this.password = password;
     }
 
-    /**
-     * @return the rol
-     */
+ 
     public String getRol() {
         return rol;
     }
 
-    /**
-     * @param rol the rol to set
-     */
+ 
     public void setRol(String rol) {
         this.rol = rol;
     }
 
-    /**
-     * @return the id
-     */
-    public int getId() {
-        return id;
+   
+//    public int getId() {
+//        return id;
+//    }
+// 
+//    public void setId(int id) {
+//        this.id = id;
+//    }
+
+    public String getCui() {
+        return cui;
     }
 
-    /**
-     * @param id the id to set
-     */
-    public void setId(int id) {
-        this.id = id;
+    public void setCui(String cui) {
+        this.cui = cui;
     }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+//    public String getFechaIngreso() {
+//        return fechaIngreso;
+//    }
+//
+//    public void setFechaIngreso(String fechaIngreso) {
+//        this.fechaIngreso = fechaIngreso;
+//    }
+
+    public String getNit() {
+        return nit;
+    }
+
+    public void setNit(String nit) {
+        this.nit = nit;
+    }
+
+    public int getSucursalId() {
+        return sucursalId;
+    }
+
+    public void setSucursalId(int sucursalId) {
+        this.sucursalId = sucursalId;
+    }
+    
 
 }
