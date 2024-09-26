@@ -87,7 +87,7 @@ public class Producto_querys {
 
     
     
-    public Producto getUserById_nombre(String id_codigo) {
+    public Producto getProcductoBynombre_id(String id_codigo) {
         Producto prod = null;
         try {
             conn = Conexion.getConnection();

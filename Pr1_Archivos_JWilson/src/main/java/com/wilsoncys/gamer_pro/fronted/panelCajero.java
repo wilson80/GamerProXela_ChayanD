@@ -13,13 +13,17 @@ import javax.swing.JOptionPane;
  */
 public class panelCajero extends javax.swing.JPanel {
     private Control control;
+    private FormNuevaVenta newVenta;
+    private panel_Productos panel_p;
     /**
      * Creates new form panelAdmin
      */
-    public panelCajero(Control control) {
+    public panelCajero(Control control ) {
         initComponents();
         this.control = control;
+        newVenta = new FormNuevaVenta(this.control);
         agregarPaneles();
+        
     }
 
  
@@ -49,7 +53,7 @@ public class panelCajero extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1027, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1383, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -71,9 +75,12 @@ public class panelCajero extends javax.swing.JPanel {
 
     
     private void agregarPaneles() {
-        FormNuevaVenta form = new FormNuevaVenta(control);
-        form.setBounds(0, 0, 930, 601 );
-        contenedorAgregar.add(form);
+        panel_p = new panel_Productos(control);
+            panel_p.setBounds(0, 0, 874, 618 );
+        newVenta.setBounds(0, 0, 1374, 680 );
+        newVenta.add(panel_p);
+        contenedorAgregar.add(newVenta);
         contenedorAgregar.updateUI();
+        
     }
 }

@@ -184,7 +184,7 @@ public class panel_Inventario extends javax.swing.JPanel {
         Producto productEncontrado = null;
         try {
             Producto_querys pro = new Producto_querys();
-              productEncontrado =  pro.getUserById_nombre(fieldBuscar.getText());
+              productEncontrado =  pro.getProcductoBynombre_id(fieldBuscar.getText());
            
         } catch ( Exception e) {
             e.printStackTrace();

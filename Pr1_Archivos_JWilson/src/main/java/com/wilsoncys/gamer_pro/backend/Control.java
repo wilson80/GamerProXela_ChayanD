@@ -21,14 +21,14 @@ import javax.swing.JOptionPane;
  */
 public class Control {
     public principalWindow principalWin;
-    private UsersDb usersDb;
+    private  Usuario currentUser;
     private Usuario searchUser = null;
     private String rolUser = "";
     private int idSucursalAcutal = 0;
 
     
     public Control() {
-        this.usersDb = new UsersDb();
+        this.currentUser = null;
         iniciar();
     }
  
@@ -47,6 +47,7 @@ public class Control {
         UsersDb usersDb = new UsersDb();
         searchUser = usersDb.getUserByUsernamePassword(name, password);
         if (searchUser != null) {
+            currentUser = searchUser;
               rolUser = searchUser.getRol();
               idSucursalAcutal = searchUser.getSucursalId();
               succes = true;
@@ -55,7 +56,6 @@ public class Control {
         }      
         return succes; 
     }
-    
     
     
     public void inciarUser(){
@@ -84,14 +84,14 @@ public class Control {
     public void iniciarAdmin(){
         panelAdmin panel = new panelAdmin(this);
         panel.setBounds(10, 0, 1074, 852);
-        principalWin.addThePanelGeneral(panel);
+        principalWin.addThePanelGeneral(panel, currentUser);
         
     }
     
     public void iniciarCajero(){
         panelCajero panel = new panelCajero(this);
-        panel.setBounds(10, 0, 1074, 1000);
-        principalWin.addThePanelGeneral(panel);
+        panel.setBounds(10, 0, 1374, 634);
+        principalWin.addThePanelGeneral(panel, currentUser);
         
     }
 
@@ -99,13 +99,13 @@ public class Control {
     private void iniciarInventarista() {
         panel_Inventario panel = new panel_Inventario(this);
         panel.setBounds(10, 5, 950,  600);
-        principalWin.addThePanelGeneral(panel);
+        principalWin.addThePanelGeneral(panel, currentUser);
     }
 
     private void iniciarBodeguero() {
         panel_Bodeguero panel = new panel_Bodeguero(this);
         panel.setBounds(10, 5, 950,  600);
-        principalWin.addThePanelGeneral(panel);
+        principalWin.addThePanelGeneral(panel, currentUser);
     }
     
     
@@ -118,6 +118,10 @@ public class Control {
 //        UsersDb crear = new UsersDb();
 //        crear.insert(usuario);
 //    }
+    public void controlCajero(Usuario usuario) throws SQLException {
+        UsersDb crear = new UsersDb();
+        crear.insert(usuario);
+    }
     
     
     

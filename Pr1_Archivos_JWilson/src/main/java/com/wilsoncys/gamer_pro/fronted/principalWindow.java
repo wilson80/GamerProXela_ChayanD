@@ -5,6 +5,7 @@
 package com.wilsoncys.gamer_pro.fronted;
 
 import com.wilsoncys.gamer_pro.backend.Control;
+import com.wilsoncys.gamer_pro.backend.models.Usuario;
 import java.awt.Component;
 import javax.swing.JPanel;
 
@@ -15,9 +16,10 @@ import javax.swing.JPanel;
 public class principalWindow extends javax.swing.JFrame {
     
     private Control control;
-    /**
-     * Creates new form principalWindow
-     */
+    private Usuario userActual;
+    
+    
+    
     public principalWindow(Control control) {
         initComponents();
         this.control = control;
@@ -35,6 +37,7 @@ public class principalWindow extends javax.swing.JFrame {
         buttonLogOut = new javax.swing.JButton();
         labelSucursal = new javax.swing.JLabel();
         labelPuesto = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,10 +51,13 @@ public class principalWindow extends javax.swing.JFrame {
             }
         });
 
-        labelSucursal.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        labelSucursal.setText("Label sucursal");
+        labelSucursal.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
 
-        labelPuesto.setText("puesto del usuario");
+        labelPuesto.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+
+        jLabel1.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 24)); // NOI18N
+        jLabel1.setText("Gamer Pro SanCris");
+        jLabel1.setToolTipText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -59,32 +65,33 @@ public class principalWindow extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(panelGeneral, javax.swing.GroupLayout.DEFAULT_SIZE, 1397, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(panelGeneral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(labelSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(81, 81, 81)
+                        .addGap(142, 142, 142)
                         .addComponent(labelPuesto, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(buttonLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 618, Short.MAX_VALUE)
+                        .addComponent(buttonLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(12, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(buttonLogOut, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(labelSucursal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(labelPuesto, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addComponent(panelGeneral, javax.swing.GroupLayout.PREFERRED_SIZE, 702, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(11, 11, 11)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(buttonLogOut)
+                        .addComponent(jLabel1))
+                    .addComponent(labelPuesto, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelSucursal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(13, 13, 13)
+                .addComponent(panelGeneral, javax.swing.GroupLayout.PREFERRED_SIZE, 710, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -103,12 +110,34 @@ public class principalWindow extends javax.swing.JFrame {
     }
 
     public void logoutSecion( ){
+        labelPuesto.setText("");
+        labelSucursal.setText("");
+        
         panelGeneral.removeAll();
         insertarVentanaLogig();
     }
    
-    public void addThePanelGeneral(Component component){
+    public void addThePanelGeneral(Component component, Usuario userActual){
+        String sucursal = "";
         panelGeneral.add(component);
+        this.userActual = userActual;
+        labelPuesto.setText("Usuario actual: " + userActual.getRol());
+        switch (userActual.getSucursalId()) {
+            case 1:
+                sucursal = "Parque";
+                break;
+            case 2:
+                sucursal = "Centro 1";
+                break;
+            case 3:
+                sucursal = " Centro 2";
+                break;
+            default:
+                break;
+                
+        }
+        
+        labelSucursal.setText("Sucursal: " + sucursal);
         panelGeneral.updateUI();
     }
     
@@ -116,6 +145,7 @@ public class principalWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonLogOut;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel labelPuesto;
     private javax.swing.JLabel labelSucursal;
     private javax.swing.JPanel panelGeneral;
@@ -124,8 +154,16 @@ public class principalWindow extends javax.swing.JFrame {
     private void insertarVentanaLogig() {
         
         PanelLogin paneLog = new PanelLogin(control);
-        paneLog.setBounds(425, 100, 680, 470); // Establecer las coordenadas y el tamaño del panel secundario
+        paneLog.setBounds(470, 110, 680, 470); // Establecer las coordenadas y el tamaño del panel secundario
         panelGeneral.add(paneLog);
         panelGeneral.updateUI();
     }
+
+    public void setUserActual(Usuario userActual) {
+        this.userActual = userActual;
+    }
+    
+    
+    
+    
 }
