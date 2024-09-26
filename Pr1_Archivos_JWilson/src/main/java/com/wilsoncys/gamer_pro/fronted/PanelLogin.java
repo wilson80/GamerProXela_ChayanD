@@ -43,23 +43,16 @@ public class PanelLogin extends javax.swing.JPanel {
 
         labelUser = new javax.swing.JLabel();
         laberPassword = new javax.swing.JLabel();
-        cajonPassword = new javax.swing.JTextField();
         cajonUser = new javax.swing.JTextField();
         buttonEntrar = new javax.swing.JButton();
         labelTitulo = new javax.swing.JLabel();
+        cajonPassword = new javax.swing.JPasswordField();
 
         labelUser.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         labelUser.setText("Ingrese su usuario");
 
         laberPassword.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         laberPassword.setText("Ingrese su constraseña");
-
-        cajonPassword.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        cajonPassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cajonPasswordActionPerformed(evt);
-            }
-        });
 
         cajonUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,18 +79,18 @@ public class PanelLogin extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(93, 93, 93)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cajonUser)
-                            .addComponent(laberPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
-                            .addComponent(cajonPassword)
-                            .addComponent(labelUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(125, 125, 125)
                         .addComponent(buttonEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(45, 45, 45)
-                        .addComponent(labelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(labelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(93, 93, 93)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cajonUser)
+                            .addComponent(laberPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+                            .addComponent(labelUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cajonPassword))))
                 .addContainerGap(74, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -111,17 +104,13 @@ public class PanelLogin extends javax.swing.JPanel {
                 .addComponent(cajonUser, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(laberPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cajonPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
+                .addGap(18, 18, 18)
+                .addComponent(cajonPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(buttonEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(139, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void cajonPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajonPasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cajonPasswordActionPerformed
 
     private void cajonUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cajonUserActionPerformed
         // TODO add your handling code here:
@@ -178,7 +167,7 @@ public class PanelLogin extends javax.swing.JPanel {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonEntrar;
-    private javax.swing.JTextField cajonPassword;
+    private javax.swing.JPasswordField cajonPassword;
     private javax.swing.JTextField cajonUser;
     private javax.swing.JLabel labelTitulo;
     private javax.swing.JLabel labelUser;

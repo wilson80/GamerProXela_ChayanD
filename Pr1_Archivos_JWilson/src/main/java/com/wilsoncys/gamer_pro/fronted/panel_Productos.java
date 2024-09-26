@@ -5,7 +5,7 @@
 package com.wilsoncys.gamer_pro.fronted;
 
 import com.wilsoncys.gamer_pro.backend.Control;
-import com.wilsoncys.gamer_pro.backend.Productos_porVenta;
+import com.wilsoncys.gamer_pro.backend.ControlCajero;
 import com.wilsoncys.gamer_pro.backend.database.usersdb.Producto_querys;
 import com.wilsoncys.gamer_pro.backend.models.Producto;
 import java.awt.Component;
@@ -21,7 +21,7 @@ import javax.swing.JScrollPane;
  * @author Jonwil
  */
 public class panel_Productos extends javax.swing.JPanel {
-    private Productos_porVenta oneSale = new Productos_porVenta();
+    private ControlCajero oneSale = new ControlCajero();
     private Control control;
     private int alturaItem = 60;
     private int altura = 0;
@@ -30,22 +30,24 @@ public class panel_Productos extends javax.swing.JPanel {
     private int cantidadProductos = 0;
     private double generalSuma = 0;
 
-    
-    private LinkedList<panelItem_cajero> items;
+   
+    private LinkedList<panelItem_cajero> itemProd;
     private LinkedList<panelItem_cajero> itemsFinal;
+    JPanel panelContenedor = new JPanel();
+     // Crear el panel principal con null layout
+    JScrollPane scrollPane;
 
     
     
-     // Crear el panel principal con null layout
-    JPanel panelContenedor = new JPanel();
-    JScrollPane scrollPane;
   
     public panel_Productos(Control control) {
         initComponents();
         this.control = control;
-        items = new LinkedList<>();
-        itemsFinal = new LinkedList<>();
-         oneSale = new Productos_porVenta();
+        this.control.setControlCajero(oneSale);
+        this.oneSale.setUsuario(control.getCurrentUser());
+        this.itemProd = new LinkedList<>();
+        this.itemsFinal = new LinkedList<>();
+        this.oneSale.setProducts(itemProd);
 
         
         panelContenedor.setLayout(null);
@@ -160,11 +162,11 @@ public class panel_Productos extends javax.swing.JPanel {
             return;
         }
         boolean error = false;
-       for (int i = 0; i < items.size(); i++) {
-            if(items.get(i).isEliminado()){
-                items.remove(i);
+       for (int i = 0; i < itemProd.size(); i++) {
+            if(itemProd.get(i).isEliminado()){
+                itemProd.remove(i);
             }else{
-                itemsFinal.add(items.get(i));
+                itemsFinal.add(itemProd.get(i));
             }
         }
  
@@ -183,11 +185,11 @@ public class panel_Productos extends javax.swing.JPanel {
         }
          if(!error){
             JOptionPane.showMessageDialog(null, "Se han Ingresado: " 
-                    + items.size() + " clases de productos Exitosamente");
+                    + itemProd.size() + " clases de productos Exitosamente");
             panelContenedor.removeAll();
             panelContenedor.setPreferredSize(new Dimension(470, 50));  // Tamaño inicial
             contadorPaneles =0;
-            items = new LinkedList<>();
+            itemProd = new LinkedList<>();
             itemsFinal = new LinkedList<>();
             this.updateUI();
             
@@ -214,12 +216,13 @@ public class panel_Productos extends javax.swing.JPanel {
         panelContenedor.setPreferredSize(new Dimension(820, 10+(contadorPaneles * 80)));
         panelContenedor.updateUI();
         oneSale.addList(newPanel_prod);
-        items.add(newPanel_prod);
         cantidadProductos += newPanel_prod.getCantidad();
         labelAllProd.setText("Cantidad productos" + cantidadProductos);
         generalSuma += newPanel_prod.getSubtotal();
+        oneSale.setTotal(generalSuma);
         labelTotal.setText( "Total: " + generalSuma);
-        
+        itemProd.add(newPanel_prod);
+        currentProd = null;
 
     } 
  
@@ -227,7 +230,7 @@ public class panel_Productos extends javax.swing.JPanel {
     }//GEN-LAST:event_searchActionPerformed
 
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
-        items = new LinkedList<>();
+        itemProd = new LinkedList<>();
         panelContenedor.removeAll();
         panelContenedor.setPreferredSize(new Dimension(470, 50));  // Tamaño inicial
         contadorPaneles =0;
@@ -257,6 +260,19 @@ public void quitarProd(){
     cantidadProductos--;
     labelAllProd.setText("Cantidad productos: " +  cantidadProductos);
 }
+
+    public LinkedList<panelItem_cajero> getItems() {
+        return itemProd;
+    }
+
+    public void setGeneralSuma(double generalSuma) {
+        this.generalSuma = generalSuma;
+    }
+
+    public double getGeneralSuma() {
+        return generalSuma;
+    }
+    
 
 
 

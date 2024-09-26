@@ -5,6 +5,7 @@
 package com.wilsoncys.gamer_pro.fronted;
 
 import com.wilsoncys.gamer_pro.backend.Control;
+import javax.swing.JTextField;
 
 /**
  *
@@ -75,7 +76,7 @@ public class FormNuevaVenta extends javax.swing.JPanel {
             }
         });
         add(jButton1);
-        jButton1.setBounds(910, 520, 330, 40);
+        jButton1.setBounds(910, 540, 330, 40);
 
         Total.setText("Total:");
         add(Total);
@@ -125,7 +126,7 @@ public class FormNuevaVenta extends javax.swing.JPanel {
     }//GEN-LAST:event_fieldNombreActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        control.controlVenta(this);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void fieldDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldDireccionActionPerformed
@@ -140,10 +141,38 @@ public class FormNuevaVenta extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_checkNitActionPerformed
 
+    public Control getControl() {
+        return control;
+    }
+
+    public void setControl(Control control) {
+        this.control = control;
+    }
+
+    public JTextField getFieldNit() {
+        return fieldNit;
+    }
+
+    public void setFieldNit(JTextField fieldNit) {
+        this.fieldNit = fieldNit;
+    }
+
+    public JTextField getFieldNombre() {
+        return fieldNombre;
+    }
+
+    public void setFieldNombre(JTextField fieldNombre) {
+        this.fieldNombre = fieldNombre;
+    }
+
+        
+    
     private void fieldNitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldNitActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_fieldNitActionPerformed
 
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Total;

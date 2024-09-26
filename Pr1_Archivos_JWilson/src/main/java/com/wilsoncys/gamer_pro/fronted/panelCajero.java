@@ -62,7 +62,7 @@ public class panelCajero extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
-
+        
     }//GEN-LAST:event_jTabbedPane1MouseClicked
 
 

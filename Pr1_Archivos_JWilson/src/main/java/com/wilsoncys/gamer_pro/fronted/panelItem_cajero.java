@@ -15,10 +15,10 @@ import javax.swing.JOptionPane;
 public class panelItem_cajero extends javax.swing.JPanel {
     private panel_Productos control;
     
-    private String codigoP = "";
-    private String nombre = "";
-    private String descripcion = "";
-    private double precio = 0;
+    private String codigoP;
+    private String nombre;
+    private String descripcion;
+    private double precio;
     private int cantidad = 1;
     private int id;
     private boolean eliminado = false;
@@ -136,6 +136,7 @@ public class panelItem_cajero extends javax.swing.JPanel {
         control.quitarProd();
         control.desAcumular(subtotal);
         
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -146,7 +147,7 @@ public class panelItem_cajero extends javax.swing.JPanel {
                                 + "cubrir la cantidad Solicitada");
             cantidad--;
             labelCantidad.setText("Cantidad: " + cantidad);
-            labelCantidad.setText("Cantidad: " + subtotal);
+//            labelCantidad.setText("Cantidad: " + subtotal );
             control.quitarProd();
 //            control.desAcumular(subtotal);
         }else{
@@ -208,6 +209,7 @@ public class panelItem_cajero extends javax.swing.JPanel {
         setNombre(prod.getNombre());
         existencias = prod.getCantidadExibicion();
         calcularSubtotal();
+        codigoP =prod.getId();
     }
     
     
