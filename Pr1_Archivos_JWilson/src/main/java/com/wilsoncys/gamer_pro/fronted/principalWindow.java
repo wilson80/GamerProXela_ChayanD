@@ -38,6 +38,7 @@ public class principalWindow extends javax.swing.JFrame {
         labelSucursal = new javax.swing.JLabel();
         labelPuesto = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        labelNumero = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,6 +60,9 @@ public class principalWindow extends javax.swing.JFrame {
         jLabel1.setText("Gamer Pro SanCris");
         jLabel1.setToolTipText("");
 
+        labelNumero.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelNumero.setText("#");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -75,7 +79,9 @@ public class principalWindow extends javax.swing.JFrame {
                         .addComponent(labelSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(142, 142, 142)
                         .addComponent(labelPuesto, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 618, Short.MAX_VALUE)
+                        .addGap(63, 63, 63)
+                        .addComponent(labelNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 428, Short.MAX_VALUE)
                         .addComponent(buttonLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(19, 19, 19))))
         );
@@ -86,7 +92,8 @@ public class principalWindow extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(buttonLogOut)
-                        .addComponent(jLabel1))
+                        .addComponent(jLabel1)
+                        .addComponent(labelNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(labelPuesto, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelSucursal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(13, 13, 13)
@@ -138,6 +145,7 @@ public class principalWindow extends javax.swing.JFrame {
         }
         
         labelSucursal.setText("Sucursal: " + sucursal);
+        labelNumero.setText("#" + userActual.getSucursalId() );
         panelGeneral.updateUI();
     }
     
@@ -146,6 +154,7 @@ public class principalWindow extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonLogOut;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel labelNumero;
     private javax.swing.JLabel labelPuesto;
     private javax.swing.JLabel labelSucursal;
     private javax.swing.JPanel panelGeneral;
